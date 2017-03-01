@@ -39,17 +39,7 @@ public class Kettle {
 
   /* Launcher */
 
-    public static void main(String[] args) {
-
-        Kettle kettle = new Kettle("Solo", 55.0, 2.0, 1.4, false);
-        System.out.println("Тест");
-        kettle.launcher(kettle);
-
-
-    }
-
-
-    public void launcher(Kettle k){
+    public void start(Kettle k){
 
         Environment environment = new Environment();
         environment.addKettle(k);
