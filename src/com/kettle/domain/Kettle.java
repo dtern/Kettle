@@ -2,6 +2,7 @@ package com.kettle.domain;
 
 import java.util.ArrayList;
 
+
 public class Kettle {
 
     private final static double ROOM_TEMPERATURE = 18.0;
@@ -39,10 +40,10 @@ public class Kettle {
 
   /* Launcher */
 
-    public void start(Kettle k){
+    public void start(){
 
         Environment environment = new Environment();
-        environment.addKettle(k);
+        environment.addKettle(this);
         Thread t = new Thread(environment);
         t.start();
 
@@ -123,6 +124,19 @@ public class Kettle {
 
     public double getCurrentTemperature(){
         return currentWaterTemperature;
+    }
+
+
+    public boolean getSwitchStatus() {
+        return switchStatus;
+    }
+
+    public String getKettleModel() {
+        return kettleModel;
+    }
+
+    public void setCurrentWaterTemperature(double currentWaterTemperature) {
+        this.currentWaterTemperature = currentWaterTemperature;
     }
 
 
