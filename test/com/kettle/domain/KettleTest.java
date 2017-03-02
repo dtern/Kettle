@@ -1,13 +1,23 @@
 package com.kettle.domain;
 
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class KettleTest {
 
+    Kettle kettle = null;
+
+
+    @Before
+    public void setup() throws Exception {
+        kettle = new Kettle();
+    }
+
+
+
     @Test
     public void reduceTemperature() throws Exception {
-        Kettle kettle = new Kettle();
         kettle.reduceTemperature(20.0);
         kettle.setCurrentWaterTemperature(12.0);
         assertTrue("Abnormal temperature",kettle.getCurrentTemperature() >= 18.0);
@@ -23,7 +33,6 @@ public class KettleTest {
 
     @Test
     public void switchKettleOff() throws Exception {
-        Kettle kettle = new Kettle();
         kettle.switchKettleOff();
         assertFalse("Kettle don't swich off", kettle.getSwitchStatus());
 
@@ -32,7 +41,6 @@ public class KettleTest {
 
     @Test
     public void switchKettleOn() throws Exception {
-        Kettle kettle = new Kettle();
         kettle.switchKettleOn();
         assertTrue("Kettle don't swich on", kettle.getSwitchStatus());
     }
@@ -40,7 +48,6 @@ public class KettleTest {
 
     @Test
     public void getKettleModel() throws Exception {
-        Kettle kettle = new Kettle();
         assertEquals("Errore default model name", "Default", kettle.getKettleModel());
 }
 
