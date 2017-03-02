@@ -10,9 +10,14 @@ public class KettleTest {
         Kettle kettle = new Kettle();
         kettle.reduceTemperature(20.0);
         kettle.setCurrentWaterTemperature(12.0);
+        assertTrue("Abnormal temperature",kettle.getCurrentTemperature() >= 18.0);
+
+        /*
+        Barbarian method ? he-he
         if (kettle.getCurrentTemperature() < 18.0){
             fail("The temperature may not fall below the room");
         }
+        */
     }
 
 
@@ -20,9 +25,8 @@ public class KettleTest {
     public void switchKettleOff() throws Exception {
         Kettle kettle = new Kettle();
         kettle.switchKettleOff();
-        if (kettle.getSwitchStatus() != false){
-            fail("Kettle don't swich off");
-        }
+        assertFalse("Kettle don't swich off", kettle.getSwitchStatus());
+
     }
 
 
@@ -30,9 +34,7 @@ public class KettleTest {
     public void switchKettleOn() throws Exception {
         Kettle kettle = new Kettle();
         kettle.switchKettleOn();
-        if (kettle.getSwitchStatus() != true){
-            fail("Kettle don't swich on");
-        }
+        assertTrue("Kettle don't swich on", kettle.getSwitchStatus());
     }
 
 
