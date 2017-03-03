@@ -33,9 +33,10 @@ public class KettleTest {
 
     @Test
     public void switchKettleOff() throws Exception {
-        kettle.switchKettleOff();
-        assertFalse("Kettle don't swich off", kettle.getSwitchStatus());
-
+        if (kettle.getSwitchStatus() == true) {
+            kettle.switchKettleOff();
+            assertFalse("Kettle don't swich off", kettle.getSwitchStatus());
+        }
     }
 
 
@@ -45,6 +46,19 @@ public class KettleTest {
         assertTrue("Kettle don't swich on", kettle.getSwitchStatus());
     }
 
+
+    @Test (expected = Kettle.FalseStateException.class)
+    public void FalseKettleTurnOff() throws Exception {
+        kettle.switchKettleOff();
+        kettle.switchKettleOff();
+    }
+
+
+    @Test  (expected = Kettle.FalseStateException.class)
+    public void FalseKettleTurnOn() throws Exception {
+        kettle.switchKettleOn();
+        kettle.switchKettleOn();
+    }
 
     @Test
     public void getKettleModel() throws Exception {

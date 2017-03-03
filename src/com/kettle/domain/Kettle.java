@@ -44,6 +44,14 @@ public class Kettle {
 
         Environment environment = new Environment();
         environment.addKettle(this);
+
+        try {
+            this.switchKettleOff();
+            this.switchKettleOff();
+        } catch (FalseStateException e) {
+            e.printStackTrace();
+        }
+
         Thread t = new Thread(environment);
         t.start();
 
@@ -52,13 +60,23 @@ public class Kettle {
 
     /* Methods */
 
-    public void switchKettleOn(){
-        switchStatus = true;
+    public void switchKettleOn() throws FalseStateException {
+        if (switchStatus == true){
+            throw new FalseStateException();
+        }
+        else {
+            switchStatus = true;
+        }
     }
 
 
-    public void switchKettleOff(){
-        switchStatus = false;
+    public void switchKettleOff() throws FalseStateException {
+        if (switchStatus == false){
+            throw new FalseStateException();
+        }
+        else {
+            switchStatus = false;
+        }
     }
 
 
@@ -171,5 +189,14 @@ public class Kettle {
 
         }
     }
+
+
+    /* Exception classes */
+
+    public class FalseStateException extends Exception {
+
+    }
+
+
 
 }
