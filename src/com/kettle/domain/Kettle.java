@@ -5,10 +5,9 @@ import java.util.ArrayList;
 
 public class Kettle {
 
-    private final static double ROOM_TEMPERATURE = 18.0;
-
     private String kettleModel;
     private double currentWaterTemperature;
+    private double roomTemperature;
     private double maxWaterVolume;
     private double currentWaterVolume;
     private boolean switchStatus;
@@ -20,6 +19,7 @@ public class Kettle {
 
         kettleModel = "Default";
         currentWaterTemperature = 18.0;
+        roomTemperature = 18.0;
         maxWaterVolume = 2.0;
         currentWaterVolume = 0.0;
         switchStatus = false;
@@ -49,6 +49,7 @@ public class Kettle {
             this.switchKettleOff();
             this.switchKettleOff();
         } catch (FalseStateException e) {
+            e.printStackTrace();
             e.printStackTrace();
         }
 
@@ -120,11 +121,11 @@ public class Kettle {
 
 
     public void reduceTemperature(double amountDegree){
-        if (currentWaterTemperature - amountDegree < ROOM_TEMPERATURE) {
-            currentWaterTemperature = ROOM_TEMPERATURE;
+        if (currentWaterTemperature - amountDegree < roomTemperature) {
+            currentWaterTemperature = roomTemperature + 2;
         }
         else {
-            currentWaterTemperature = currentWaterTemperature - amountDegree;
+            currentWaterTemperature = currentWaterTemperature - amountDegree + 2;
         }
     }
 
@@ -155,6 +156,14 @@ public class Kettle {
 
     public void setCurrentWaterTemperature(double currentWaterTemperature) {
         this.currentWaterTemperature = currentWaterTemperature;
+    }
+
+    public void setCurrentWaterVolume(double currentWaterVolume) {
+        this.currentWaterVolume = currentWaterVolume;
+    }
+
+    public void setRoomTemperature(double roomTemperature) {
+        this.roomTemperature = roomTemperature;
     }
 
 

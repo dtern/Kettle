@@ -15,19 +15,27 @@ public class KettleTest {
     }
 
 
-
     @Test
     public void reduceTemperature() throws Exception {
-        kettle.reduceTemperature(20.0);
-        kettle.setCurrentWaterTemperature(12.0);
-        assertTrue("Abnormal temperature",kettle.getCurrentTemperature() >= 18.0);
 
-        /*
-        Barbarian method ? he-he
-        if (kettle.getCurrentTemperature() < 18.0){
-            fail("The temperature may not fall below the room");
+        // Fields setup
+        double reduceTemp = 4.0;
+        double currentWaterTemp = 34.0;
+        double roomTemp = 18.0;
+        double deltaTemp = currentWaterTemp - roomTemp;
+
+        kettle.setCurrentWaterTemperature(currentWaterTemp);
+        kettle.setRoomTemperature(roomTemp);
+        kettle.reduceTemperature(reduceTemp);
+
+        // Test
+
+        if (reduceTemp > deltaTemp) {
+            assertTrue("Not minimal temperature! Expected: 18.0, Real is: "  + kettle.getCurrentTemperature(), kettle.getCurrentTemperature() == 18.0);
         }
-        */
+        else {
+            assertTrue("Abnormal temperature! Expected: " + (currentWaterTemp - reduceTemp) + ", Real is:  " + kettle.getCurrentTemperature(), kettle.getCurrentTemperature() == 30);
+        }
     }
 
 
