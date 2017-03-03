@@ -27,6 +27,19 @@ public class Kettle {
     }
 
 
+    public Kettle(double roomTemperature, double currentWaterTemperature){
+
+        this.currentWaterTemperature = currentWaterTemperature;
+        this.roomTemperature = roomTemperature;
+
+        kettleModel = "Default";
+        maxWaterVolume = 2.0;
+        currentWaterVolume = 0.0;
+        switchStatus = false;
+
+    }
+
+
     public Kettle(String kettleModel, double currentWaterTemperature, double maxWaterVolume, double currentWaterVolume, boolean switchStatus){
 
         this.kettleModel = kettleModel;
@@ -62,7 +75,7 @@ public class Kettle {
     /* Methods */
 
     public void switchKettleOn() throws FalseStateException {
-        if (switchStatus == true){
+        if (switchStatus){
             throw new FalseStateException();
         }
         else {
@@ -72,7 +85,7 @@ public class Kettle {
 
 
     public void switchKettleOff() throws FalseStateException {
-        if (switchStatus == false){
+        if (!switchStatus){
             throw new FalseStateException();
         }
         else {
@@ -144,12 +157,9 @@ public class Kettle {
     public double getCurrentTemperature(){
         return currentWaterTemperature;
     }
-
-
     public boolean getSwitchStatus() {
         return switchStatus;
     }
-
     public String getKettleModel() {
         return kettleModel;
     }

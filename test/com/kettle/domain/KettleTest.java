@@ -18,17 +18,17 @@ public class KettleTest {
     @Test
     public void reduceTemperature() throws Exception {
 
-        // Fields setup
+        // Test fields setup
         double reduceTemp = 4.0;
         double currentWaterTemp = 34.0;
         double roomTemp = 18.0;
         double deltaTemp = currentWaterTemp - roomTemp;
 
-        kettle.setCurrentWaterTemperature(currentWaterTemp);
-        kettle.setRoomTemperature(roomTemp);
+        // Kettle setup
+        kettle = new Kettle(roomTemp, currentWaterTemp);
         kettle.reduceTemperature(reduceTemp);
 
-        // Test
+        // Start test
 
         if (reduceTemp > deltaTemp) {
             assertTrue("Not minimal temperature! Expected: 18.0, Real is: "  + kettle.getCurrentTemperature(), kettle.getCurrentTemperature() == 18.0);
@@ -41,7 +41,7 @@ public class KettleTest {
 
     @Test
     public void switchKettleOff() throws Exception {
-        if (kettle.getSwitchStatus() == true) {
+        if (kettle.getSwitchStatus()) {
             kettle.switchKettleOff();
             assertFalse("Kettle don't swich off", kettle.getSwitchStatus());
         }
