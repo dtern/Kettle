@@ -28,7 +28,7 @@ public class KettleTest {
         kettle = new Kettle(roomTemp, currentWaterTemp);
         kettle.reduceTemperature(reduceTemp);
 
-        // Start test
+        // Starting test
 
         if (reduceTemp > deltaTemp) {
             assertTrue("Not minimal temperature! Expected: 18.0, Real is: "  + kettle.getCurrentTemperature(), kettle.getCurrentTemperature() == 18.0);
